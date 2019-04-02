@@ -1,4 +1,4 @@
-package com.webapp.webapp;
+package com.webapp.webapp.controllers;
 
 import com.webapp.webapp.models.Users;
 import com.webapp.webapp.repositories.UsersRepository;
@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/users")
 public class UsersController {
     @Autowired
     private UsersRepository repository;
@@ -19,7 +20,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public Users getUserByUsername(@PathVariable("username") String username){
+    public Users getUserByUsername(@PathVariable String username){
         return repository.findByUsername(username);
     }
 
