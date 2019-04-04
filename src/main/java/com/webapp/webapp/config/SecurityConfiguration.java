@@ -20,10 +20,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
+                .formLogin()
+                .loginPage("/templates/login.html")
+                .failureUrl("/templates/login-error.html")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/templates/login.html")
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/", "/css/**", "/js/**").permitAll()
-                    .anyRequest().authenticated()
+                .antMatchers("/css/**", "/js/**", "/signup", "/register", "/all-users").permitAll()
+                .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().sessionManagement().disable();
     }

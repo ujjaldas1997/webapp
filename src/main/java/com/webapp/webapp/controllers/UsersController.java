@@ -28,4 +28,9 @@ public class UsersController {
     public void createUser(@Valid @RequestBody Users user){
         repository.save(user);
     }
+
+//    @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
+//    public void modifyUserDashboard(@Valid @RequestBody Users user) {
+//        repository.save(user);
+//    }
 }
