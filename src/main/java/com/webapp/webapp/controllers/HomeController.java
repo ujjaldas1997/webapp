@@ -39,6 +39,15 @@ public class HomeController {
         return "all-users";
     }
 
+    @RequestMapping(value = "/delete-user", method = RequestMethod.POST)
+    public String deleteUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Users user = repository.findByUsername(username);
+        repository.delete(user);
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "login";
+    }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String modifyUserData(@ModelAttribute Users modifyUser, Model model){
@@ -53,6 +62,24 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping(value = "/change-password", method = RequestMethod.GET)
+    public String changePassword(@ModelAttribute Users changeUserPassword, Model model){
+        model.addAttribute("changeUserPassword", new Users());
+        return "change-password";
+    }
+
+    @RequestMapping(value = "/update-password", method = RequestMethod.POST)
+    public String updatePassword(@ModelAttribute Users changeUserPassword, Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Users user = repository.findByUsername(username);
+        user.setPassword(passwordEncoder.encode(changeUserPassword.getPassword()));
+        repository.save(user);
+        model.addAttribute("user", user);
+        model.addAttribute("modifyUser", user);
+        return "index";
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String getSignUp(Model model){
         model.addAttribute("addUser", new Users());
@@ -62,7 +89,6 @@ public class HomeController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@ModelAttribute Users addUser){
         addUser.setPassword(passwordEncoder.encode(addUser.getPassword()));
-        System.out.println("Username: "+addUser.getUsername());
         repository.save(addUser);
         return "login";
     }

@@ -45,7 +45,16 @@
                 <div style="margin-left: 15%; position: absolute"><input type="submit" value="Save"/></div>
             </form>
         </div>
-
+    </div>
+    <div style="margin-left: 87%; position: absolute">
+        <form th:action="@{/change-password}" method="get">
+            <input type="submit" style="width: 150px" value="Update password"/>
+        </form>
+    </div>
+    <div style="align: center; position: absolute">
+        <form th:action="@{/delete-user}" method="post">
+            <input id="delete" type="submit" value="Delete Me"/>
+        </form>
     </div>
 
 </div>
