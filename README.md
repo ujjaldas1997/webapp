@@ -13,6 +13,12 @@ Go to `localhost:8080`, a login page will appear if the user has not logged in p
 ### Login and go to dashboard & change your details if necessary
 ![dashboard](https://raw.githubusercontent.com/ujjaldas1997/Data_images/master/webapp/dashboard.png)
 
+### Change password
+![change password](https://github.com/ujjaldas1997/Data_images/blob/master/webapp/change_password.png?raw=true)
+
+### Delete yourself
+![delete user](https://github.com/ujjaldas1997/Data_images/blob/master/webapp/delete_user.png?raw=true)
+
 ### Provide your details and signup
 ![signup](https://github.com/ujjaldas1997/Data_images/blob/master/webapp/signup.png?raw=true)
 
